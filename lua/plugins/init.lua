@@ -262,6 +262,37 @@ local default_plugins = {
       require("which-key").setup(opts)
     end,
   },
+
+  {
+    "github/copilot.vim",
+    lazy = false,
+    config = function(_, opts)
+      vim.g.copilot_no_tab_map = true
+      vim.g.copilot_assume_mapped = true
+    end,
+  },
+
+  {
+    "lervag/vimtex",
+    ft = "tex",
+    lazy = false, -- already lazy loaded by virtual_text
+    config = function()
+      require "plugins.configs.vimtex"
+    end,
+  },
+
+  {
+    "folke/zen-mode.nvim",
+    opts = function()
+      return require "plugins.configs.zen"
+    end,
+    lazy = false,
+
+    keys = {
+      { "<leader>k", "<cmd>ZenMode<cr>", desc = "Zen-Mode" },
+    },
+  },
+
 }
 
 local config = require("core.utils").load_config()
